@@ -1098,29 +1098,51 @@
   });
   document.addEventListener('click', function(){if(openMenu){openMenu.classList.remove('open');openMenu=null;}});
 
+  function sortTableRows(table, colIdx, colType, dir) {
+    var tbody = table.querySelector('tbody');
+    if (!tbody) return;
+    var rows = Array.from(tbody.querySelectorAll('tr'));
+    rows.sort(function(a,b) {
+      var cA = a.cells[colIdx], cB = b.cells[colIdx];
+      if (!cA || !cB) return 0;
+      if (colType === 'num') {
+        var rawA = colIdx === 3 && a.hasAttribute('data-section') ? a.getAttribute('data-section') : (cA.getAttribute('data-num') || cA.textContent);
+        var rawB = colIdx === 3 && b.hasAttribute('data-section') ? b.getAttribute('data-section') : (cB.getAttribute('data-num') || cB.textContent);
+        var matchA = String(rawA).replace(/\s/g, '').replace(',', '.').match(/-?\d+(?:\.\d+)?/);
+        var matchB = String(rawB).replace(/\s/g, '').replace(',', '.').match(/-?\d+(?:\.\d+)?/);
+        var nA = matchA ? parseFloat(matchA[0]) : 0;
+        var nB = matchB ? parseFloat(matchB[0]) : 0;
+        return dir==='asc' ? nA-nB : nB-nA;
+      }
+      var vA = cA.textContent.trim().toLowerCase();
+      var vB = cB.textContent.trim().toLowerCase();
+      return dir==='asc' ? vA.localeCompare(vB,'ru') : vB.localeCompare(vA,'ru');
+    });
+    rows.forEach(function(r){tbody.appendChild(r);});
+  }
+
   document.querySelectorAll('.sort-menu button').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
       var th = btn.closest('th');
       var table = th.closest('table');
-      var tbody = table.querySelector('tbody');
       var colIdx = parseInt(th.getAttribute('data-col'));
       var colType = th.getAttribute('data-type');
       var dir = btn.getAttribute('data-dir');
       table.querySelectorAll('th.sortable').forEach(function(h){h.classList.remove('asc','desc');});
       th.classList.add(dir);
-      var rows = Array.from(tbody.querySelectorAll('tr'));
-      rows.sort(function(a,b) {
-        var cA = a.cells[colIdx], cB = b.cells[colIdx];
-        if (!cA || !cB) return 0;
-        var vA = cA.textContent.trim().toLowerCase(), vB = cB.textContent.trim().toLowerCase();
-        if (colType === 'num') { var nA = parseFloat(vA)||0, nB = parseFloat(vB)||0; return dir==='asc'?nA-nB:nB-nA; }
-        return dir==='asc' ? vA.localeCompare(vB,'ru') : vB.localeCompare(vA,'ru');
-      });
-      rows.forEach(function(r){tbody.appendChild(r);});
+      sortTableRows(table, colIdx, colType, dir);
       btn.closest('.sort-menu').classList.remove('open');
       openMenu = null;
     });
+  });
+
+  ['table-h05','table-h07'].forEach(function(tableId) {
+    var table = document.getElementById(tableId);
+    if (!table) return;
+    var sectionTh = table.querySelector('th.sortable[data-col="3"]');
+    sortTableRows(table, 3, 'num', 'asc');
+    if (sectionTh) sectionTh.classList.add('asc');
   });
 
   // ── Compare (legacy no-op — chekbox сравнение убрано в Фазе C) ──
