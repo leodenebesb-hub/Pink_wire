@@ -11,6 +11,8 @@
       --pink-deep: #b24873; --pink-mid: #d4729a; --pink-light: #f2dce5; --pink-bg: #fdf5f8;
       --green-ok: #2d8a56; --amber-warn: #c07820; --red-no: #c03030; --blue-link: #3868a8;
       --sidebar-w: 250px; --gutter: clamp(1.5rem, 3vw, 4rem);
+      --main-top: clamp(1.5rem, 2vw, 2.5rem);
+      --sidebar-brand-top: calc(var(--main-top) + 1.55rem);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -19,11 +21,12 @@
     .app { display: flex; min-height: 100vh; }
 
     /* ── Sidebar ── */
-    .sidebar { width: var(--sidebar-w); flex-shrink: 0; background: var(--surface); border-right: 1px solid var(--border); padding: 3.25rem 1rem 1.25rem; position: sticky; top: 0; height: 100vh; overflow-y: auto; z-index: 10; }
+    .sidebar { width: var(--sidebar-w); flex-shrink: 0; background: var(--surface); border-right: 1px solid var(--border); padding: var(--sidebar-brand-top) 1rem 1.25rem; position: sticky; top: 0; height: 100vh; overflow-y: auto; z-index: 10; }
     /* ── UI Language toggle (RU / EN / ET) ── */
     .ui-lang-toggle {
       display: flex; gap: 0.25rem; margin-bottom: 0.75rem;
       padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);
+      min-height: 2.375rem;
     }
     .ui-lang-toggle button {
       flex: 1; padding: 0.375rem 0.5rem; font-size: 0.75rem; font-weight: 700;
@@ -39,13 +42,13 @@
       background: var(--pink-deep); color: #fff; border-color: var(--pink-deep);
     }
     .sidebar h3 { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); margin: 1rem 0 0.375rem; }
-    .sidebar .logo-area { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+    .sidebar .logo-area { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); min-height: 41.5px; }
     .sidebar .logo-area .wire-dot { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #e87aaa, #b24873); flex-shrink: 0; }
     .sidebar .logo-area span { font-size: 0.75rem; font-weight: 700; color: var(--pink-deep); line-height: 1.2; }
 
     /* ── Nav ── */
     .side-nav { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
-    .nav-btn { display: flex; align-items: center; gap: 0.5rem; width: 100%; text-align: left; padding: 0.5rem 0.625rem; font-size: 0.8125rem; font-weight: 600; font-family: inherit; border: 1px solid transparent; border-radius: 6px; background: none; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
+    .nav-btn { display: flex; align-items: center; gap: 0.5rem; width: 100%; min-height: 2.125rem; text-align: left; padding: 0.5rem 0.625rem; font-size: 0.8125rem; font-weight: 600; font-family: inherit; border: 1px solid transparent; border-radius: 6px; background: none; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
     .nav-btn:hover { background: var(--pink-bg); color: var(--pink-deep); }
     .nav-btn.active { background: var(--pink-light); color: var(--pink-deep); border-color: var(--border-accent); }
     .nav-btn .nav-ico { width: 16px; height: 16px; flex-shrink: 0; }
@@ -62,17 +65,17 @@
     .search-box:focus { outline: none; border-color: var(--border-accent); }
 
     /* ── Main ── */
-    .main { flex: 1; min-width: 0; padding: var(--gutter); }
+    .main { flex: 1; min-width: 0; padding: var(--main-top) var(--gutter) var(--gutter); }
 
-    header { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-bottom: 1.75rem; padding-bottom: 1rem; border-bottom: 2px solid var(--border-accent); flex-wrap: wrap; }
-    .brand-logo { height: 46px; width: auto; }
-    .dept-attribution { text-align: right; line-height: 1.35; }
-    .dept-lead { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); }
-    .dept-name { font-size: 0.9375rem; font-weight: 700; color: var(--pink-deep); }
-    .dept-desc { font-size: 0.6875rem; font-style: italic; color: var(--text-muted); }
-    .dept-author { font-size: 0.6875rem; color: var(--text-muted); margin-top: 0.125rem; }
+    header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; margin-bottom: 1.125rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--border-accent); flex-wrap: wrap; }
+    .brand-logo { height: 40px; width: auto; }
+    .dept-attribution { width: 13.75rem; min-height: 52.2px; text-align: right; line-height: 1.22; }
+    .dept-lead { font-size: 0.5625rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); }
+    .dept-name { font-size: 0.8125rem; font-weight: 700; color: var(--pink-deep); }
+    .dept-desc { font-size: 0.625rem; font-style: italic; color: var(--text-muted); }
+    .dept-author { font-size: 0.625rem; color: var(--text-muted); margin-top: 0.0625rem; }
 
-    .page-title { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .page-title { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
     .page-title .wire-swatch { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #e87aaa 0%, #d4507a 50%, #b24873 100%); box-shadow: 0 2px 8px rgba(178,72,115,0.3), inset 0 1px 2px rgba(255,255,255,0.4); flex-shrink: 0; }
     .page-title h1 { font-size: 1.375rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; color: var(--pink-deep); }
     .page-title p { color: var(--text-muted); font-size: 0.8125rem; margin-top: 0.125rem; }
@@ -110,6 +113,23 @@
     /* ── Tables ── */
     .table-wrap { overflow-x: auto; margin: 0 0 1.25rem; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
     table { width: 100%; border-collapse: collapse; font-size: 0.8125rem; font-variant-numeric: tabular-nums; }
+    #table-h05, #table-h07 { min-width: 1720px; table-layout: fixed; }
+    #table-h05 th:nth-child(1), #table-h07 th:nth-child(1) { width: 132px; }
+    #table-h05 th:nth-child(2), #table-h07 th:nth-child(2) { width: 88px; }
+    #table-h05 th:nth-child(3), #table-h07 th:nth-child(3) { width: 96px; }
+    #table-h05 th:nth-child(4), #table-h07 th:nth-child(4) { width: 92px; }
+    #table-h05 th:nth-child(5), #table-h07 th:nth-child(5) { width: 130px; }
+    #table-h05 th:nth-child(6), #table-h07 th:nth-child(6) { width: 62px; }
+    #table-h05 th:nth-child(7), #table-h07 th:nth-child(7) { width: 132px; }
+    #table-h05 th:nth-child(8), #table-h07 th:nth-child(8) { width: 90px; }
+    #table-h05 th:nth-child(9), #table-h07 th:nth-child(9) { width: 90px; }
+    #table-h05 th:nth-child(10), #table-h07 th:nth-child(10) { width: 56px; }
+    #table-h05 th:nth-child(11), #table-h07 th:nth-child(11) { width: 128px; }
+    #table-h05 th:nth-child(12), #table-h07 th:nth-child(12) { width: 90px; }
+    #table-h05 th:nth-child(13), #table-h07 th:nth-child(13) { width: 112px; }
+    #table-h05 th:nth-child(14), #table-h07 th:nth-child(14) { width: 132px; }
+    #table-h05 th:nth-child(15), #table-h07 th:nth-child(15) { width: 380px; }
+    #table-h05 td:not(:last-child), #table-h07 td:not(:last-child) { overflow-wrap: anywhere; }
     thead th { background: #f5f3f0; font-weight: 600; font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); padding: 0.5rem 0.625rem; text-align: left; white-space: nowrap; border-bottom: 1px solid var(--border); position: relative; }
     th.sortable { cursor: pointer; user-select: none; padding-right: 1.375rem; }
     th.sortable:hover { background: #eceae6; color: var(--text); }
@@ -193,7 +213,7 @@
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      .sidebar { position: fixed; left: -270px; top: 0; height: 100vh; transition: left 0.25s ease; box-shadow: 2px 0 12px rgba(0,0,0,0.1); }
+      .sidebar { position: fixed; left: -270px; top: 0; height: 100vh; padding: 3.25rem 1rem 1.25rem; transition: left 0.25s ease; box-shadow: 2px 0 12px rgba(0,0,0,0.1); }
       .sidebar.open { left: 0; }
       .mobile-toggle { display: flex !important; }
       .main { padding: 1rem; padding-top: 3.5rem; }
@@ -756,7 +776,7 @@
           </tr></thead>
           <tbody>
             <tr class="recommended" data-vendor="Lapp" data-section="0.75" data-region="EU" tabindex="0" role="button" aria-pressed="false"><td class="link-cell"><a class="cta-shop" href="https://shop.tkd-kabel.de/H05Z-K-1X0-75-ROSA-HALOGENFREI/0502148" target="_blank" title="TKD-Kabel">К товару <span class="cta-arrow">→</span></a><span class="cta-sku" data-copy="0502148" title="Копировать арт. TKD">TKD: 0502148</span></td><td>Lapp</td><td><strong>4725082</strong></td><td><span class="badge badge-pink">0,75 mm²</span></td><td>TKD-Kabel</td><td>DE</td><td>по запросу</td><td>100 м</td><td>1 шт.</td><td class="mail-cell"><button class="mail-icon" aria-expanded="false" aria-label="Открыть шаблон письма" onclick="toggleMailPanel(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></button></td><td>HAR · CE · VDE · CPR Eca</td><td>—</td><td><span class="badge badge-warn">запрос</span></td><td><span class="badge badge-warn">B2C VAT 19% в цене</span></td><td>Кросс-продажа Lapp через TKD-Kabel.</td></tr>
-            <tr class="recommended best-pick" data-vendor="Lapp" data-section="0.75" data-region="EU" tabindex="0" role="button" aria-pressed="false"><td class="link-cell"><a class="cta-shop" href="https://www.elektro4000.de/Kabel-Leitungen/Aderleitung/Halogenfreie-Aderleitung/H05Z-K/H05Z-K-0-75-mm/Lapp-Kabel-Leitung-H05Z-K-90-GRAD-C-1X0-75-PK-4725082-100::1102759.html" target="_blank" title="Elektro4000">К товару <span class="cta-arrow">→</span></a><span class="cta-sku" data-copy="4725082" title="Копировать арт. Lapp">Lapp: 4725082</span></td><td>Lapp</td><td><strong>4725082</strong> <span class="badge badge-best" title="Минимальный cash outlay netto среди подтверждённых цен">⭐ Best</span></td><td><span class="badge badge-pink">0,75 mm²</span></td><td>Elektro4000</td><td>DE</td><td data-num="29" title="€0,29/м × 100 м, brutto с DE VAT 19%"><strong>€29,00</strong> / 100 м</td><td>100 м</td><td>1 шт.</td><td class="mail-cell"><button class="mail-icon" aria-expanded="false" aria-label="Открыть шаблон письма" onclick="toggleMailPanel(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></button></td><td>— / уточнить</td><td>8–18 дн.</td><td><span class="badge badge-warn">запрос</span></td><td><span class="badge badge-warn">B2C VAT 19% в цене</span></td><td>VPE каталога = 57 600 м (опт); отдельно 1×100 м — уточнить у продавца.</td></tr>
+            <tr class="recommended best-pick" data-vendor="Lapp" data-section="0.75" data-region="EU" tabindex="0" role="button" aria-pressed="false"><td class="link-cell"><a class="cta-shop" href="https://www.elektro4000.de/Kabel-Leitungen/Aderleitung/Halogenfreie-Aderleitung/H05Z-K/H05Z-K-0-75-mm/Lapp-Kabel-Leitung-H05Z-K-90-GRAD-C-1X0-75-PK-4725082-100::1102759.html" target="_blank" title="Elektro4000">К товару <span class="cta-arrow">→</span></a><span class="cta-sku" data-copy="4725082" title="Копировать арт. Lapp">Lapp: 4725082</span></td><td>Lapp</td><td><strong>4725082</strong></td><td><span class="badge badge-pink">0,75 mm²</span></td><td>Elektro4000</td><td>DE</td><td data-num="29" title="€0,29/м × 100 м, brutto с DE VAT 19%"><strong>€29,00</strong> / 100 м</td><td>100 м</td><td>1 шт.</td><td class="mail-cell"><button class="mail-icon" aria-expanded="false" aria-label="Открыть шаблон письма" onclick="toggleMailPanel(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></button></td><td>— / уточнить</td><td>8–18 дн.</td><td><span class="badge badge-warn">запрос</span></td><td><span class="badge badge-warn">B2C VAT 19% в цене</span></td><td><span class="badge badge-best" title="Минимальный cash outlay netto среди подтверждённых цен">⭐ Best</span> VPE каталога = 57 600 м (опт); отдельно 1×100 м — уточнить у продавца.</td></tr>
             <tr class="recommended" data-vendor="Lapp" data-section="0.75" data-region="EU" tabindex="0" role="button" aria-pressed="false"><td class="link-cell"><a class="cta-shop" href="https://stex24.com/4725082-lapp-h05z-k-90c-1x0.75-mmqm-pkpinksingle-core-cable-halogen-free-pink-ad-2.8-mm-pu-100.0-metres-124741" target="_blank" title="Stex24">К товару <span class="cta-arrow">→</span></a><span class="cta-sku" data-copy="4725082" title="Копировать арт. Lapp">Lapp: 4725082</span></td><td>Lapp</td><td><strong>4725082</strong></td><td><span class="badge badge-pink">0,75 mm²</span></td><td>Stex24 (Stecker Express)</td><td>DE</td><td>по запросу</td><td>100 м</td><td>1 шт.</td><td class="mail-cell"><button class="mail-icon" aria-expanded="false" aria-label="Открыть шаблон письма" onclick="toggleMailPanel(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></button></td><td>— / уточнить</td><td>—</td><td><span class="badge badge-warn">запрос</span></td><td><span class="badge badge-warn">B2C VAT 19% в цене</span></td><td>Нет MOQ, доставка EU. Внешний Ø 2,8 мм (из URL).</td></tr>
             <tr class="recommended" data-vendor="Helukabel" data-section="0.75" data-region="EU" tabindex="0" role="button" aria-pressed="false"><td class="link-cell"><a class="cta-shop" href="https://shop.helukabel.com/de-de/H05Z-K-M52872/52163" target="_blank" title="Helukabel Shop">К товару <span class="cta-arrow">→</span></a><span class="cta-sku" data-copy="52163" title="Копировать арт. Helukabel">Helukabel: 52163</span></td><td>Helukabel</td><td><strong>52163</strong></td><td><span class="badge badge-pink">0,75 mm²</span></td><td>Helukabel Shop</td><td>DE</td><td data-num="54" title="brutto с DE VAT 19%; ~€0,54/м"><strong>€54,00</strong> / 100 м <span style="color:var(--text-dim)">(≈)</span></td><td>100 м</td><td>1 шт.</td><td class="mail-cell"><button class="mail-icon" aria-expanded="false" aria-label="Открыть шаблон письма" onclick="toggleMailPanel(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></button></td><td>HAR 08 · VDE · CPR Eca</td><td>3–4 дн.</td><td><span class="badge badge-ok">EU, без таможни</span></td><td><span class="badge badge-warn">B2C VAT 19% в цене</span></td><td>Финская дочка: Cablex Oy. Приоритет №1 по срокам.</td></tr>
             <tr data-vendor="TKD Kabel" data-section="0.75" data-region="EU" tabindex="0" role="button" aria-pressed="false"><td class="link-cell"><a class="cta-shop" href="https://shop.tkd-kabel.de/H05Z-K-1X0-75-ROSA-HALOGENFREI/0502148" target="_blank" title="TKD-Kabel Shop">К товару <span class="cta-arrow">→</span></a><span class="cta-sku" data-copy="0502148" title="Копировать арт. TKD">TKD: 0502148</span></td><td>TKD Kabel</td><td>0502148</td><td><span class="badge badge-pink">0,75 mm²</span></td><td>TKD-Kabel Shop</td><td>DE</td><td>по запросу</td><td>уточнить</td><td>уточнить</td><td class="mail-cell"><button class="mail-icon" aria-expanded="false" aria-label="Открыть шаблон письма" onclick="toggleMailPanel(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></button></td><td>CE · VDE · HAR</td><td>—</td><td><span class="badge badge-warn">запрос</span></td><td><span class="badge badge-warn">B2C VAT 19% в цене</span></td><td>Собственная марка TKD.</td></tr>
@@ -2343,6 +2363,7 @@
             notesTd.appendChild(resetBtn);
             try { localStorage.removeItem(key); } catch(err){}
             notesTd.classList.remove('notes-edited');
+            if (window.translatePageContent) window.translatePageContent(currentUiLang());
             if (typeof updateNotesCount === 'function') updateNotesCount();
             showToast(t('toast.note_reset'));
           });
@@ -2361,7 +2382,7 @@
           // Auto-save при потере фокуса
           notesTd.addEventListener('blur', function(){
             var current = cellPlainText(notesTd);
-            var original = notesTd.getAttribute('data-original-text') || '';
+            var original = notesTd.getAttribute('data-original-text-current') || notesTd.getAttribute('data-original-text') || '';
             try {
               if (current === original || current === '') {
                 localStorage.removeItem(key);
@@ -2554,12 +2575,14 @@
           td.appendChild(resetBtn);
           try { localStorage.removeItem(key); } catch(err){}
           td.classList.remove('notes-edited');
+          if (window.translatePageContent) window.translatePageContent(currentUiLang());
           updateNotesCount();
         });
         td.appendChild(resetBtn);
       }
       td.classList.remove('notes-edited');
     });
+    if (window.translatePageContent) window.translatePageContent(currentUiLang());
     updateNotesCount();
     showToast(t('toast.notes_cleared', {n: count}));
   };
@@ -2570,9 +2593,8 @@
   // ══════════════════════════════════════════════════════════════════
   // ── i18n интерфейса (RU / EN / ET) ──
   // ══════════════════════════════════════════════════════════════════
-  // Переводимые: sidebar навигация, фильтры, заголовки, кнопки заметок.
-  // НЕ переводятся: данные таблиц, шаблоны писем (свой selector), названия
-  // магазинов, артикулы, сертификаты, tooltips технических подсказок.
+  // Переводимые: интерфейс, обзор, статусы, таблицы и исходные примечания.
+  // Не переводятся как данные: бренды, магазины, артикулы, страны, цены, стандарты.
   var I18N = {
     ru: {
       'nav.search':       'Поиск предложений',
@@ -2870,8 +2892,347 @@
     return s;
   };
 
+  var CONTENT_I18N = {
+    en: {
+      'Подготовлено отделом': 'Prepared by',
+      'Разработка и внедрение ИИ-решений': 'AI solution design and deployment',
+      'К товару': 'Product',
+      'B2C VAT 19% в цене': 'B2C VAT 19% included',
+      'Non-EU импорт EE 24%': 'Non-EU import EE 24%',
+      'EU, без таможни': 'EU, no customs',
+      'UK → EE, таможня': 'UK → EE, customs',
+      'запрос': 'RFQ',
+      'по запросу': 'on request',
+      'уточнить': 'confirm',
+      '— / уточнить': '— / confirm',
+      'логин': 'login',
+      'по логину': 'login required',
+      'в наличии': 'in stock',
+      'нет розового': 'no pink',
+      'не подходит': 'not suitable',
+      'не производят': 'not produced',
+      'не соответствует спецификации': 'does not meet spec',
+      'проверено — без результата': 'checked — no result',
+      'справочно — не подходят по MOQ': 'reference only — MOQ not suitable',
+      'тип + сечение + арт.': 'type + cross-section + article',
+      'Ссылка': 'Link',
+      'Производитель': 'Manufacturer',
+      'Арт. №': 'Article No.',
+      'Сечение': 'Cross-section',
+      'Дистрибьютор': 'Distributor',
+      'Страна': 'Country',
+      'Цена': 'Price',
+      'Тип': 'Type',
+      'Напряжение': 'Voltage',
+      'Подтв.': 'Confirmed',
+      'Комментарий': 'Comment',
+      'Причина отклонения': 'Rejection reason',
+      'Результат': 'Result',
+      'Данные аудита:': 'Audit data:',
+      'Матрица типа/сечения:': 'Type / cross-section matrix:',
+      'Оптовые дистрибьюторы': 'Wholesale distributors',
+      'Не найдено розового': 'No pink found',
+      'Требует проверки': 'Needs checking',
+      'Арт. Rexel: 0355112.': 'Rexel article: 0355112.',
+      'По URL карточки': 'From product-card URL',
+      'H07Z-K 1.5 mm², арт. PEL01809+': 'H07Z-K 1.5 mm², article PEL01809+',
+      ', арт. pel01808 (dp/CB20914)': ', article pel01808 (dp/CB20914)',
+      'Заявлено в исходнике': 'Stated in the source',
+      'Не подтянулся или устарел? Введи вручную:': 'Not loaded or outdated? Enter manually:',
+      'Применить': 'Apply',
+      '↻ обновить': '↻ refresh',
+      'Курс GBP → EUR:': 'GBP → EUR rate:',
+      'Показано 11 из 11 позиций': 'Showing 11 of 11 items',
+      '100 м': '100 m',
+      '/ 100 м': '/ 100 m',
+      '1 шт.': '1 pc.',
+      '5 000 м': '5,000 m',
+      'MOQ 5 000 м': 'MOQ 5,000 m',
+      '€0,29/м': '€0.29/m',
+      '0,75 mm²': '0.75 mm²',
+      '1,0 mm²': '1.0 mm²',
+      '1,5 mm²': '1.5 mm²',
+      '2,5 mm²': '2.5 mm²',
+      '4,0 mm²': '4.0 mm²',
+      '6,0 mm²': '6.0 mm²',
+      '3–4 дн.': '3-4 days',
+      '8–18 дн.': '8-18 days',
+      '10–21 дн.': '10-21 days',
+      'А→Я': 'A→Z',
+      'Я→А': 'Z→A',
+      '↑ мин.': '↑ min.',
+      '↓ макс.': '↓ max.',
+      'арт.?': 'art.?',
+      '⭐ Best': '⭐ Best',
+      'Рекомендуемый план действий': 'Recommended action plan',
+      'Альтернативы цвета:': 'Color alternatives:',
+      'Розовый = HAR код 08': 'Pink = HAR code 08',
+      'VAT & cash outlay:': 'VAT & cash outlay:',
+      'Контекст заказа': 'Order context',
+      'Проект': 'Project',
+      'Потребность': 'Requirement',
+      'Спецификация': 'Specification',
+      'Мин. фасовка': 'Minimum pack',
+      'Статус': 'Status',
+      'Закупки': 'Purchasing',
+      'Подтверждённых SKU': 'Confirmed SKUs',
+      'Производители': 'Manufacturers',
+      'Розничных дистрибьюторов': 'Retail distributors',
+      'Ориентир цены brutto': 'Indicative gross price',
+      'за 100 м · Elektro4000 / Helukabel': 'per 100 m · Elektro4000 / Helukabel',
+      'H05Z-K + H07Z-K, розовый (Lapp 8 + Helukabel 6)': 'H05Z-K + H07Z-K, pink (Lapp 8 + Helukabel 6)',
+      'DE 4 · UK 2 (оптовые — отдельно)': 'DE 4 · UK 2 (wholesale separately)',
+      'Lapp, Helukabel, TKD, UniStrand': 'Lapp, Helukabel, TKD, UniStrand',
+      'Burfell Excitation — ABB Finland (Landsvirkjun, Исландия)': 'Burfell Excitation — ABB Finland (Landsvirkjun, Iceland)',
+      '4 провода JH301/JH303/JH311/JH313 (аналоговые выходы U11/U12), ~4 м': '4 wires JH301/JH303/JH311/JH313 (analog outputs U11/U12), ~4 m',
+      'H05Z-K 90°C, 0.75 mm², цвет Pink (PK), HAR код 08, LSZH, 300/500V': 'H05Z-K 90°C, 0.75 mm², Pink (PK), HAR code 08, LSZH, 300/500 V',
+      '100 м (остаток → склад нестандартных цветов)': '100 m (remainder → non-standard color stock)',
+      'Ожидается ответ ABB через Vilmar — допускается ли замена цвета на Violet': 'Waiting for ABB response via Vilmar on whether Violet is allowed as a substitute color',
+      'Jana Loza (кабели: поставка ABB, провода: ESB заказывает сам)': 'Jana Loza (cables supplied by ABB; wires ordered by ESB)',
+      'Эстонский VAT = 24 % (EMTA, с 01.07.2025). Для DE-магазинов цены на сайте — brutto с DE VAT 19 %; netto = brutto / 1.19. При B2B-регистрации ESB-LVS OÜ возможен reverse charge (уточнить у продавца). UK-магазины: экспорт zero-rated, при импорте в EE начисляется EE VAT 24 % на CIF + пошлина TARIC 8544.49 (preliminary).': 'Estonian VAT is 24% (EMTA, from 2025-07-01). For German shops, listed prices are gross with 19% German VAT; net = gross / 1.19. With ESB-LVS OÜ B2B registration, reverse charge may be available (confirm with the seller). UK shops: zero-rated export; import to Estonia adds 24% EE VAT on CIF plus TARIC 8544.49 duty (preliminary).',
+      '— стандартный каталожный цвет (не кастом), но с низким спросом. У крупных дистрибьюторов (Rexel, UNI ELEKTRO) MOQ 5 000 м. Ни один балтийский дистрибьютор не держит розовый на складе. Для покупки 1×100 м → напрямую Helukabel (~€54/100м, 3–4 дн.) или через мелкие DE-магазины (stex24, TKD-Kabel).': '— a standard catalog color, not custom, but low-demand. Large distributors (Rexel, UNI ELEKTRO) have MOQ 5,000 m. No Baltic distributor keeps pink in stock. For 1×100 m: buy directly from Helukabel (~€54/100 m, 3-4 days) or through smaller German shops (stex24, TKD-Kabel).',
+      '(shop.helukabel.com) — приоритет №1. Арт.': '(shop.helukabel.com) — priority #1. Article',
+      ', ~€54/100м, MOQ 1 шт., доставка 3–4 дня, EU без таможни. Финская дочка:': ', ~€54/100 m, MOQ 1 pc., delivery 3-4 days, EU with no customs. Finnish subsidiary:',
+      '(stex24.com) — запросить Lapp': '(stex24.com) — request Lapp',
+      ', 1×100 м. Тел.: +49 2351 9395-0.': ', 1×100 m. Tel.: +49 2351 9395-0.',
+      '(shop.tkd-kabel.de) — арт.': '(shop.tkd-kabel.de) — article',
+      '(H05Z-K 0.75 rosa). Прямой магазин.': '(H05Z-K 0.75 rosa). Direct shop.',
+      '(Финляндия) — арт.': '(Finland) — article',
+      'через местного представителя.': 'through the local representative.',
+      '(UK) — план Б: UniStrand H07Z-K 1.5mm² PK за £34.94/100м. Post-Brexit таможня.': '(UK) — plan B: UniStrand H07Z-K 1.5mm² PK for £34.94/100 m. Post-Brexit customs.',
+      'Запасной вариант:': 'Fallback option:',
+      'если 0.75 нет — заказать': 'if 0.75 is unavailable, order',
+      '(Lapp 4725083 / Helukabel 52164).': '(Lapp 4725083 / Helukabel 52164).',
+      'Если розовый недоступен —': 'If pink is unavailable —',
+      '(стандартный, есть везде) или': '(standard, widely available) or',
+      '. Замена требует письменного согласования ABB — цвет в P1305 Connection List RevD.': '. Substitution requires written ABB approval — color in P1305 Connection List RevD.',
+      '→ Перейдите в раздел': '→ Go to',
+      '«Поиск предложений»': '“Search offers”',
+      '(меню слева) для таблицы дистрибьюторов, цен и ссылок на покупку.': '(left menu) for the distributor, price and purchase-link table.',
+      'Кросс-продажа Lapp через TKD-Kabel.': 'Lapp cross-sale via TKD-Kabel.',
+      'VPE каталога = 57 600 м (опт); отдельно 1×100 м — уточнить у продавца.': 'Catalog VPE = 57,600 m (wholesale); confirm separate 1×100 m with the seller.',
+      'Нет MOQ, доставка EU. Внешний Ø 2,8 мм (из URL).': 'No MOQ, EU delivery. Outer Ø 2.8 mm (from URL).',
+      'Финская дочка: Cablex Oy. Приоритет №1 по срокам.': 'Finnish subsidiary: Cablex Oy. Priority #1 for lead time.',
+      'Собственная марка TKD.': 'TKD own brand.',
+      '1,0 mm² — допустимая замена по матрице сечений.': '1.0 mm² is an acceptable substitute by the cross-section matrix.',
+      'Прямой магазин Helukabel; требуется логин для цены.': 'Direct Helukabel shop; login required for pricing.',
+      'Собственная марка TKD, 1,0 mm² — допустимая замена.': 'TKD own brand; 1.0 mm² is an acceptable substitute.',
+      '450/750 V. Требуется согласование замены цвета с клиентом проекта (P1305 Connection List RevD).': '450/750 V. Color substitution must be agreed with the project customer (P1305 Connection List RevD).',
+      'Альтернатива при отсутствии 0,75/1,0. Аудит: URL Stex24 ссылается на 4726083 (4 mm²) — уточнить в запросе.': 'Alternative if 0.75/1.0 is unavailable. Audit: Stex24 URL points to 4726083 (4 mm²) — clarify in the request.',
+      'В наличии. Post-Brexit: EE VAT 24% на CIF + пошлина TARIC 8544.49 (preliminary). Курс GBP→EUR — runtime от ECB.': 'In stock. Post-Brexit: EE VAT 24% on CIF plus TARIC 8544.49 duty (preliminary). GBP→EUR rate is loaded from ECB at runtime.',
+      'Нет в каталоге.': 'Not in catalog.',
+      'Отсутствует в каталоге.': 'Missing from catalog.',
+      'Отсутствует.': 'Absent.',
+      'Ни один балтийский дистрибьютор.': 'No Baltic distributor.',
+      'Оптовый B2B, требует логин.': 'Wholesale B2B, login required.',
+      'Срок 10–21 дн.; для крупной партии.': 'Lead time 10-21 days; for a large batch.',
+      'SE: MOQ 5 000 м, EE/FI: нет.': 'SE: MOQ 5,000 m; EE/FI: no.',
+      'Distrelec → redirect на RS.': 'Distrelec → redirects to RS.',
+      'Lapp pink SKU withdrawn / zero stock.': 'Lapp pink SKU withdrawn / zero stock.',
+      'Только аксессуары/клеммы.': 'Only accessories/terminals.',
+      'Только 16–50 mm² Class 2 (жёсткий).': 'Only 16-50 mm² Class 2 (rigid).',
+      'H05Z-K: 11 цветов, но без розового.': 'H05Z-K: 11 colors, but no pink.',
+      'Сечение 0.5 mm² < минимально допустимого 0.75 mm². Тип H05Z-K вместо заявленного H07Z-K. Артикул в URL (pel01808) не совпадает с ячейкой (PEL01809+).': 'Cross-section 0.5 mm² is below the minimum allowed 0.75 mm². Type is H05Z-K instead of requested H07Z-K. URL article (pel01808) does not match the cell (PEL01809+).',
+      'строка(и) ниже помечены как отклонение от спецификации по типу/сечению/цвету. Оставлены для трассируемости.': 'row(s) below are marked as deviations from the specification by type/cross-section/color. Kept for traceability.',
+      '— не подходит для потребности 4–20 м. Оставлено для полноты картины и на случай расширения проекта.': '— not suitable for the 4-20 m requirement. Kept for completeness and possible project expansion.',
+      'H05Z-K = 0,75 / 1,0 mm² (300/500 V) · H07Z-K = ≥ 1,5 mm² (450/750 V). Все артикулы — HAR-код 08 (розовый), LSZH, класс проводника 5, стандарт EN 50525-3-41.': 'H05Z-K = 0.75 / 1.0 mm² (300/500 V) · H07Z-K = ≥ 1.5 mm² (450/750 V). All articles are HAR code 08 (pink), LSZH, conductor class 5, EN 50525-3-41.',
+      'Составлено 2026-07-03 · Leo Deneb · Цены индикативные, уточняйте перед заказом': 'Prepared 2026-07-03 · Leo Deneb · Prices are indicative; confirm before ordering',
+      'ESB-LVS OÜ · Отдел AI & Arendus · Project 12914 Burfell Excitation': 'ESB-LVS OÜ · AI & Arendus department · Project 12914 Burfell Excitation'
+    },
+    et: {
+      'Подготовлено отделом': 'Koostanud',
+      'Разработка и внедрение ИИ-решений': 'AI-lahenduste arendus ja juurutus',
+      'К товару': 'Toode',
+      'B2C VAT 19% в цене': 'B2C KM 19% hinnas',
+      'Non-EU импорт EE 24%': 'Mitte-EL import EE 24%',
+      'EU, без таможни': 'EL, tollita',
+      'UK → EE, таможня': 'UK → EE, toll',
+      'запрос': 'päring',
+      'по запросу': 'päringu alusel',
+      'уточнить': 'täpsustada',
+      '— / уточнить': '— / täpsustada',
+      'логин': 'sisselogimine',
+      'по логину': 'vajab sisselogimist',
+      'в наличии': 'laos',
+      'нет розового': 'roosat pole',
+      'не подходит': 'ei sobi',
+      'не производят': 'ei toodeta',
+      'не соответствует спецификации': 'ei vasta spetsifikatsioonile',
+      'проверено — без результата': 'kontrollitud — tulemuseta',
+      'справочно — не подходят по MOQ': 'taustaks — MOQ ei sobi',
+      'тип + сечение + арт.': 'tüüp + ristlõige + artikkel',
+      'Ссылка': 'Link',
+      'Производитель': 'Tootja',
+      'Арт. №': 'Artikkel nr',
+      'Сечение': 'Ristlõige',
+      'Дистрибьютор': 'Edasimüüja',
+      'Страна': 'Riik',
+      'Цена': 'Hind',
+      'Тип': 'Tüüp',
+      'Напряжение': 'Pinge',
+      'Подтв.': 'Kinn.',
+      'Комментарий': 'Kommentaar',
+      'Причина отклонения': 'Tagasilükkamise põhjus',
+      'Результат': 'Tulemus',
+      'Данные аудита:': 'Auditi andmed:',
+      'Матрица типа/сечения:': 'Tüübi/ristlõike maatriks:',
+      'Оптовые дистрибьюторы': 'Hulgimüüjad',
+      'Не найдено розового': 'Roosat ei leitud',
+      'Требует проверки': 'Vajab kontrolli',
+      'Арт. Rexel: 0355112.': 'Rexeli artikkel: 0355112.',
+      'По URL карточки': 'Tootekaardi URL-i järgi',
+      'H07Z-K 1.5 mm², арт. PEL01809+': 'H07Z-K 1.5 mm², artikkel PEL01809+',
+      ', арт. pel01808 (dp/CB20914)': ', artikkel pel01808 (dp/CB20914)',
+      'Заявлено в исходнике': 'Märgitud allikas',
+      'Не подтянулся или устарел? Введи вручную:': 'Ei laadinud või on aegunud? Sisesta käsitsi:',
+      'Применить': 'Rakenda',
+      '↻ обновить': '↻ värskenda',
+      'Курс GBP → EUR:': 'GBP → EUR kurss:',
+      'Показано 11 из 11 позиций': 'Kuvatud 11 / 11 kirjet',
+      '100 м': '100 m',
+      '/ 100 м': '/ 100 m',
+      '1 шт.': '1 tk',
+      '5 000 м': '5 000 m',
+      'MOQ 5 000 м': 'MOQ 5 000 m',
+      '€0,29/м': '€0,29/m',
+      '0,75 mm²': '0,75 mm²',
+      '1,0 mm²': '1,0 mm²',
+      '1,5 mm²': '1,5 mm²',
+      '2,5 mm²': '2,5 mm²',
+      '4,0 mm²': '4,0 mm²',
+      '6,0 mm²': '6,0 mm²',
+      '3–4 дн.': '3-4 pv',
+      '8–18 дн.': '8-18 pv',
+      '10–21 дн.': '10-21 pv',
+      'А→Я': 'A→Z',
+      'Я→А': 'Z→A',
+      '↑ мин.': '↑ min',
+      '↓ макс.': '↓ max',
+      'арт.?': 'art.?',
+      '⭐ Best': '⭐ Parim',
+      'Рекомендуемый план действий': 'Soovitatud tegevusplaan',
+      'Альтернативы цвета:': 'Värvi alternatiivid:',
+      'Розовый = HAR код 08': 'Roosa = HAR kood 08',
+      'VAT & cash outlay:': 'KM ja rahaline väljaminek:',
+      'Контекст заказа': 'Tellimuse kontekst',
+      'Проект': 'Projekt',
+      'Потребность': 'Vajadus',
+      'Спецификация': 'Spetsifikatsioon',
+      'Мин. фасовка': 'Min. pakend',
+      'Статус': 'Staatus',
+      'Закупки': 'Ostud',
+      'Подтверждённых SKU': 'Kinnitatud SKU-d',
+      'Производители': 'Tootjad',
+      'Розничных дистрибьюторов': 'Jaemüüjad',
+      'Ориентир цены brutto': 'Brutohinna orientiir',
+      'за 100 м · Elektro4000 / Helukabel': '100 m kohta · Elektro4000 / Helukabel',
+      'H05Z-K + H07Z-K, розовый (Lapp 8 + Helukabel 6)': 'H05Z-K + H07Z-K, roosa (Lapp 8 + Helukabel 6)',
+      'DE 4 · UK 2 (оптовые — отдельно)': 'DE 4 · UK 2 (hulgi eraldi)',
+      'Lapp, Helukabel, TKD, UniStrand': 'Lapp, Helukabel, TKD, UniStrand',
+      'Burfell Excitation — ABB Finland (Landsvirkjun, Исландия)': 'Burfell Excitation — ABB Finland (Landsvirkjun, Island)',
+      '4 провода JH301/JH303/JH311/JH313 (аналоговые выходы U11/U12), ~4 м': '4 juhet JH301/JH303/JH311/JH313 (analoogväljundid U11/U12), ~4 m',
+      'H05Z-K 90°C, 0.75 mm², цвет Pink (PK), HAR код 08, LSZH, 300/500V': 'H05Z-K 90°C, 0,75 mm², Pink (PK), HAR kood 08, LSZH, 300/500 V',
+      '100 м (остаток → склад нестандартных цветов)': '100 m (jääk → mittestandardsete värvide lattu)',
+      'Ожидается ответ ABB через Vilmar — допускается ли замена цвета на Violet': 'Oodatakse ABB vastust Vilmari kaudu, kas Violet on asendusvärvina lubatud',
+      'Jana Loza (кабели: поставка ABB, провода: ESB заказывает сам)': 'Jana Loza (kaablid tarnib ABB; juhtmed tellib ESB ise)',
+      'Эстонский VAT = 24 % (EMTA, с 01.07.2025). Для DE-магазинов цены на сайте — brutto с DE VAT 19 %; netto = brutto / 1.19. При B2B-регистрации ESB-LVS OÜ возможен reverse charge (уточнить у продавца). UK-магазины: экспорт zero-rated, при импорте в EE начисляется EE VAT 24 % на CIF + пошлина TARIC 8544.49 (preliminary).': 'Eesti KM on 24% (EMTA, alates 01.07.2025). Saksamaa poodides on veebihinnad brutod koos DE KM 19%-ga; neto = bruto / 1,19. ESB-LVS OÜ B2B registreerimisel võib kehtida reverse charge (täpsusta müüjaga). UK poed: eksport on zero-rated; import Eestisse lisab EE KM 24% CIF-ile ja TARIC 8544.49 tollimaksu (esialgne).',
+      '— стандартный каталожный цвет (не кастом), но с низким спросом. У крупных дистрибьюторов (Rexel, UNI ELEKTRO) MOQ 5 000 м. Ни один балтийский дистрибьютор не держит розовый на складе. Для покупки 1×100 м → напрямую Helukabel (~€54/100м, 3–4 дн.) или через мелкие DE-магазины (stex24, TKD-Kabel).': '— standardne kataloogivärv, mitte eritellimus, kuid väikese nõudlusega. Suurtel edasimüüjatel (Rexel, UNI ELEKTRO) on MOQ 5 000 m. Ükski Balti edasimüüja ei hoia roosat laos. 1×100 m ostuks: otse Helukabelist (~54 €/100 m, 3-4 pv) või väiksematest DE-poodidest (stex24, TKD-Kabel).',
+      '(shop.helukabel.com) — приоритет №1. Арт.': '(shop.helukabel.com) — prioriteet nr 1. Artikkel',
+      ', ~€54/100м, MOQ 1 шт., доставка 3–4 дня, EU без таможни. Финская дочка:': ', ~54 €/100 m, MOQ 1 tk, tarne 3-4 päeva, EL tollita. Soome tütarfirma:',
+      '(stex24.com) — запросить Lapp': '(stex24.com) — küsi Lapp',
+      ', 1×100 м. Тел.: +49 2351 9395-0.': ', 1×100 m. Tel: +49 2351 9395-0.',
+      '(shop.tkd-kabel.de) — арт.': '(shop.tkd-kabel.de) — artikkel',
+      '(H05Z-K 0.75 rosa). Прямой магазин.': '(H05Z-K 0.75 rosa). Otsepood.',
+      '(Финляндия) — арт.': '(Soome) — artikkel',
+      'через местного представителя.': 'kohaliku esindaja kaudu.',
+      '(UK) — план Б: UniStrand H07Z-K 1.5mm² PK за £34.94/100м. Post-Brexit таможня.': '(UK) — plaan B: UniStrand H07Z-K 1.5mm² PK hinnaga £34.94/100 m. Post-Brexit toll.',
+      'Запасной вариант:': 'Varuvariant:',
+      'если 0.75 нет — заказать': 'kui 0,75 pole saadaval, tellida',
+      '(Lapp 4725083 / Helukabel 52164).': '(Lapp 4725083 / Helukabel 52164).',
+      'Если розовый недоступен —': 'Kui roosa pole saadaval —',
+      '(стандартный, есть везде) или': '(standardne, laialt saadaval) või',
+      '. Замена требует письменного согласования ABB — цвет в P1305 Connection List RevD.': '. Asendus nõuab ABB kirjalikku kooskõlastust — värv P1305 Connection List RevD-s.',
+      '→ Перейдите в раздел': '→ Ava jaotis',
+      '«Поиск предложений»': '„Pakkumiste otsing“',
+      '(меню слева) для таблицы дистрибьюторов, цен и ссылок на покупку.': '(vasak menüü), et näha edasimüüjate, hindade ja ostulinkide tabelit.',
+      'Кросс-продажа Lapp через TKD-Kabel.': 'Lappi ristmüük TKD-Kabeli kaudu.',
+      'VPE каталога = 57 600 м (опт); отдельно 1×100 м — уточнить у продавца.': 'Kataloogi VPE = 57 600 m (hulgi); eraldi 1×100 m täpsustada müüjaga.',
+      'Нет MOQ, доставка EU. Внешний Ø 2,8 мм (из URL).': 'MOQ puudub, EL tarne. Välis-Ø 2,8 mm (URL-ist).',
+      'Финская дочка: Cablex Oy. Приоритет №1 по срокам.': 'Soome tütarfirma: Cablex Oy. Tähtaja järgi prioriteet nr 1.',
+      'Собственная марка TKD.': 'TKD oma kaubamärk.',
+      '1,0 mm² — допустимая замена по матрице сечений.': '1,0 mm² on ristlõike maatriksi järgi lubatud asendus.',
+      'Прямой магазин Helukabel; требуется логин для цены.': 'Helukabeli otsepood; hinna jaoks on vaja sisselogimist.',
+      'Собственная марка TKD, 1,0 mm² — допустимая замена.': 'TKD oma kaubamärk; 1,0 mm² on lubatud asendus.',
+      '450/750 V. Требуется согласование замены цвета с клиентом проекта (P1305 Connection List RevD).': '450/750 V. Värviasendus tuleb projekti kliendiga kooskõlastada (P1305 Connection List RevD).',
+      'Альтернатива при отсутствии 0,75/1,0. Аудит: URL Stex24 ссылается на 4726083 (4 mm²) — уточнить в запросе.': 'Alternatiiv, kui 0,75/1,0 pole saadaval. Audit: Stex24 URL viitab 4726083-le (4 mm²) — täpsustada päringus.',
+      'В наличии. Post-Brexit: EE VAT 24% на CIF + пошлина TARIC 8544.49 (preliminary). Курс GBP→EUR — runtime от ECB.': 'Laos. Post-Brexit: EE KM 24% CIF-ile + TARIC 8544.49 tollimaks (esialgne). GBP→EUR kurss laetakse ECB-st jooksvalt.',
+      'Нет в каталоге.': 'Pole kataloogis.',
+      'Отсутствует в каталоге.': 'Puudub kataloogist.',
+      'Отсутствует.': 'Puudub.',
+      'Ни один балтийский дистрибьютор.': 'Ükski Balti edasimüüja.',
+      'Оптовый B2B, требует логин.': 'Hulgi B2B, vajab sisselogimist.',
+      'Срок 10–21 дн.; для крупной партии.': 'Tarneaeg 10-21 päeva; suurele partiile.',
+      'SE: MOQ 5 000 м, EE/FI: нет.': 'SE: MOQ 5 000 m, EE/FI: ei.',
+      'Distrelec → redirect на RS.': 'Distrelec → suunab RS-i.',
+      'Lapp pink SKU withdrawn / zero stock.': 'Lappi roosa SKU on lõpetatud / laoseis null.',
+      'Только аксессуары/клеммы.': 'Ainult tarvikud/klemmid.',
+      'Только 16–50 mm² Class 2 (жёсткий).': 'Ainult 16-50 mm² Class 2 (jäik).',
+      'H05Z-K: 11 цветов, но без розового.': 'H05Z-K: 11 värvi, kuid roosat pole.',
+      'Сечение 0.5 mm² < минимально допустимого 0.75 mm². Тип H05Z-K вместо заявленного H07Z-K. Артикул в URL (pel01808) не совпадает с ячейкой (PEL01809+).': 'Ristlõige 0,5 mm² on alla lubatud miinimumi 0,75 mm². Tüüp on H05Z-K, mitte nõutud H07Z-K. URL-i artikkel (pel01808) ei kattu lahtriga (PEL01809+).',
+      'строка(и) ниже помечены как отклонение от спецификации по типу/сечению/цвету. Оставлены для трассируемости.': 'allolevad read on märgitud kõrvalekalleteks spetsifikatsioonist tüübi/ristlõike/värvi järgi. Jäetud jälgitavuse jaoks.',
+      '— не подходит для потребности 4–20 м. Оставлено для полноты картины и на случай расширения проекта.': '— ei sobi 4-20 m vajadusele. Jäetud tervikpildi ja võimaliku projekti laienduse jaoks.',
+      'H05Z-K = 0,75 / 1,0 mm² (300/500 V) · H07Z-K = ≥ 1,5 mm² (450/750 V). Все артикулы — HAR-код 08 (розовый), LSZH, класс проводника 5, стандарт EN 50525-3-41.': 'H05Z-K = 0,75 / 1,0 mm² (300/500 V) · H07Z-K = ≥ 1,5 mm² (450/750 V). Kõik artiklid on HAR kood 08 (roosa), LSZH, juhi klass 5, EN 50525-3-41.',
+      'Составлено 2026-07-03 · Leo Deneb · Цены индикативные, уточняйте перед заказом': 'Koostatud 2026-07-03 · Leo Deneb · Hinnad on indikatiivsed, täpsusta enne tellimist',
+      'ESB-LVS OÜ · Отдел AI & Arendus · Project 12914 Burfell Excitation': 'ESB-LVS OÜ · AI & Arendus osakond · Project 12914 Burfell Excitation'
+    }
+  };
+
+  var CONTENT_I18N_NODES = [];
+  function contentTextKey(s) {
+    return String(s || '').replace(/\s+/g, ' ').trim();
+  }
+  function initContentI18nNodes() {
+    var skipTags = { SCRIPT: true, STYLE: true, NOSCRIPT: true, TEXTAREA: true, OPTION: true };
+    function walk(node) {
+      if (!node) return;
+      if (node.nodeType === 3) {
+        var key = contentTextKey(node.nodeValue);
+        if (key && !node.__i18nBaseKey) {
+          node.__i18nBaseText = node.nodeValue;
+          node.__i18nBaseKey = key;
+          CONTENT_I18N_NODES.push(node);
+        }
+        return;
+      }
+      if (node.nodeType !== 1 && node.nodeType !== 9) return;
+      if (node.tagName && skipTags[node.tagName]) return;
+      for (var child = node.firstChild; child; child = child.nextSibling) walk(child);
+    }
+    walk(document.body);
+  }
+  function translatePageContent(lang) {
+    initContentI18nNodes();
+    var map = CONTENT_I18N[lang] || {};
+    CONTENT_I18N_NODES.forEach(function(node){
+      if (!node.parentNode) return;
+      var parent = node.parentElement;
+      if (parent && parent.closest('td.notes-editable.notes-edited')) return;
+      var raw = node.__i18nBaseText || node.nodeValue || '';
+      var key = node.__i18nBaseKey || contentTextKey(raw);
+      var translated = (lang === 'ru') ? key : (map[key] || key);
+      var lead = (raw.match(/^\s*/) || [''])[0];
+      var tail = (raw.match(/\s*$/) || [''])[0];
+      node.nodeValue = lead + translated + tail;
+    });
+    document.querySelectorAll('td.notes-editable:not(.notes-edited)').forEach(function(td){
+      if (typeof cellPlainText === 'function') td.setAttribute('data-original-text-current', cellPlainText(td));
+    });
+  }
+  window.translatePageContent = translatePageContent;
+
   function applyI18n(lang) {
     var dict = I18N[lang] || I18N.ru;
+    initContentI18nNodes();
     document.querySelectorAll('[data-i18n]').forEach(function(el){
       var key = el.getAttribute('data-i18n');
       if (dict[key]) el.textContent = dict[key];
@@ -2888,6 +3249,7 @@
       b.classList.toggle('active', b.getAttribute('data-ui-lang') === lang);
     });
     document.documentElement.setAttribute('lang', lang);
+    translatePageContent(lang);
     // Пересчитать динамические тексты (счётчик заметок и т.п.)
     if (typeof updateNotesCount === 'function') updateNotesCount();
     // Показанное количество строк ('Показано N из M позиций') локализовать через applyFilters
@@ -2896,8 +3258,8 @@
 
   window.setUiLang = function(lang) {
     if (!I18N[lang]) return;
-    applyI18n(lang);
     try { localStorage.setItem('esb_ui_lang', lang); } catch(e){}
+    applyI18n(lang);
   };
 
   // Применить сохранённый язык при загрузке (дефолт — ru)
